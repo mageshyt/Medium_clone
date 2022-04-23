@@ -14,10 +14,9 @@ const Posts = ({ post }: PostProps) => {
     mainImage,
     description,
   } = post
-  console.log(title, description)
   return (
     <>
-      <Link href={`/posts/${current}`}>
+      <Link href={`/post/${current}`}>
         <div className="group cursor-pointer overflow-hidden rounded-lg border">
           <img
             src={mainImage}
