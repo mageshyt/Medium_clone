@@ -1,6 +1,10 @@
 import Link from 'next/link'
-import React from 'react'
-const Header = () => {
+import React, { useRef } from 'react'
+import { NextPage } from 'next'
+
+const Header: NextPage = (): JSX.Element => {
+  const toastBR = useRef(null)
+
   return (
     <header className="mx-auto flex max-w-7xl items-center justify-between p-6">
       {/* Left side Logo */}

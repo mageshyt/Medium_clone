@@ -9,4 +9,6 @@ export interface Post {
     current: string
   }
   mainImage: string
+  body: [object]
+  _createdAt: string
 }

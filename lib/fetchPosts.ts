@@ -14,5 +14,6 @@ description,
 }   
     `
   const result = await client.fetch(query)
-  return  result
+
+  return result
 }

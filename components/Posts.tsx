@@ -14,6 +14,7 @@ const Posts = ({ post }: PostProps) => {
     mainImage,
     description,
   } = post
+
   return (
     <>
       <Link href={`/post/${current}`}>

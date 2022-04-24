@@ -1,9 +1,5 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import { useEffect, useState } from 'react'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import Posts from '../components/Posts'
@@ -15,6 +11,15 @@ interface HomeProps {
 }
 
 const Home = ({ posts }: HomeProps) => {
+  let hash = new Map()
+
+  let filteredPost = posts.filter((post: Post) => {
+    if (!hash.has(post.slug.current)) {
+      hash.set(post.slug.current, true)
+      return true
+    }
+    return false
+  })
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
@@ -29,7 +34,7 @@ const Home = ({ posts }: HomeProps) => {
         {/* Banner */}
         <Banner />
         <div className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:p-6">
-          {posts.map((post, index) => (
+          {filteredPost.map((post, index) => (
             <Posts key={index} post={post} />
           ))}
         </div>
@@ -42,7 +47,8 @@ export default Home
 
 export const getServerSideProps = async () => {
   const result = await fetch_posts()
-  console.log({ result })
+  //! filter the result  ;
+
   return {
     props: {
       posts: result,
