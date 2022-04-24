@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import React, { useState } from 'react'
 import PortableText from 'react-portable-text'
+import Comments from '../../components/Comments'
 import Header from '../../components/Header'
 import { fetch_posts } from '../../lib/fetchPosts'
 import { bodyImageBuilder, client } from '../../lib/sanity.clinet'
@@ -9,19 +10,22 @@ import { Post } from '../../typings'
 interface Props {
   post: Post
 }
-const style = {
-  input:
-    'form-input mt-1 w-full rounded-xl border py-3 px-3 shadow outline-none ring-sky-300 focus:ring ',
-  textArea:
-    'form-textarea mt-1 w-full rounded-xl border py-3 px-3 shadow outline-none ring-sky-300 focus:ring',
-}
-const Post = ({ post }: Props) => {
-  
-  const { mainImage, title, description, author, slug, body, _createdAt } = post
-  
-  const newBody = bodyImageBuilder(body)
 
-  console.log(newBody, body)
+const Post = ({ post }: Props) => {
+  const {
+    mainImage,
+    title,
+    description,
+    author,
+    slug,
+    body,
+    _createdAt,
+    _id,
+    comments,
+  } = post
+  console.log(comments)
+  const newBody = bodyImageBuilder(body)
+  const [submit, setSubmit] = React.useState(false)
   return (
     <div>
       <Header />
@@ -70,42 +74,12 @@ const Post = ({ post }: Props) => {
       </article>
       {/* Break */}
       <hr className="mx-auto max-w-xl border border-yellow-300" />
-
-      <form className="mx-auto mb-10 flex max-w-2xl flex-col p-5">
-        <h3 className="text-base font-semibold text-[#ffc017]">
-          Enjoyed the article?
-        </h3>
-        <h4 className="text-2xl font-bold">Leave a comment below!</h4>
-        <hr className="mt-2 py-3" />
-
-        {/* user name */}
-        <label className="mb-5 ">
-          <span className="text-xl font-bold">Name</span>
-          <input
-            placeholder="Enter your name"
-            type="text"
-            className={style.input}
-          />
-        </label>
-        {/* Email */}
-        <label>
-          <span className="text-xl font-bold">Email</span>
-          <input
-            placeholder="Enter your email"
-            type="email"
-            className={style.input}
-          />
-        </label>
-        {/* comment */}
-        <label>
-          <span className="text-xl font-bold">Comment</span>
-          <textarea
-            className={style.textArea}
-            placeholder="Enter your comment"
-            rows={8}
-          />
-        </label>
-      </form>
+      {submit ? (
+        <h1>done</h1>
+      ) : (
+        <Comments id={_id} submit={submit} setSubmit={setSubmit} />
+      )}
+      {/* Comments */}
     </div>
   )
 }
@@ -135,6 +109,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
  "imageUrl": image.asset->url,
   name
 },
+'comments':*[
+          _type == "comment" &&
+          post._ref == ^._id &&
+          Approved == true],
 description,
 "mainImage":mainImage.asset->url,
 body

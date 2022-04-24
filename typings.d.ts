@@ -11,4 +11,13 @@ export interface Post {
   mainImage: string
   body: [object]
   _createdAt: string
+  _id: string
+  comments: [object]
+}
+
+export interface FormInput {
+  _id: string
+  name: string
+  email: string
+  comment: string
 }
