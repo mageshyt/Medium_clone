@@ -2,8 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { client } from '../../lib/sanity.clinet'
 
-type Data = {
+interface Data {
   name: string
+  message: string
 }
 
 export default async function createComment(
@@ -24,9 +25,9 @@ export default async function createComment(
     console.log(response)
   } catch (err) {
     console.error(err)
-    res.status(500).json({ message: 'Could not comment' })
+    res.status(500)
   }
 
   console.log('Hello')
-  return res.status(200).json({ message: 'Comment submitted' })
+  return res.status(200)
 }

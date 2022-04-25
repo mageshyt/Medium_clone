@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
-import { Post } from '../typings'
+import { Post } from '../../typings'
 
 interface PostProps {
   post: Post
+
 }
 
 const Posts = ({ post }: PostProps) => {
