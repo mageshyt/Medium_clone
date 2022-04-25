@@ -8,6 +8,8 @@ import { fetch_posts } from '../../lib/fetchPosts'
 import { bodyImageBuilder, client } from '../../lib/sanity.clinet'
 import { Post } from '../../typings'
 // import {useFien/}
+import { Image } from 'primereact/image'
+
 interface Props {
   post: Post
 }
@@ -68,6 +70,9 @@ const Post = ({ post }: Props) => {
                 <a href={href} className="text-blue-500 hover:underline">
                   {children}
                 </a>
+              ),
+              image: ({ asset }: any) => (
+                <Image src={asset.url} alt={asset.alt} preview />
               ),
             }}
           />

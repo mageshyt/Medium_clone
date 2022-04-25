@@ -29,6 +29,7 @@ export default {
       title: 'Approved',
       type: 'boolean',
       description: 'Is this comment approved?',
+      default: true,
     },
   ],
 }
