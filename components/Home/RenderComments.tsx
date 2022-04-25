@@ -1,5 +1,5 @@
 import React from 'react'
-import { Comment } from '../typings'
+import { Comment } from '../../typings'
 
 interface Props {
   comments: [Comment]

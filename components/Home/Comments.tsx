@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { FormInput } from '../typings'
+import { FormInput } from '../../typings'
 import { Toast } from 'primereact/toast'
 
 const style = {

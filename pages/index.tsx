@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import Banner from '../components/Banner'
-import Header from '../components/Header'
-import Posts from '../components/Posts'
+import Banner from '../components/Home/Banner'
+import Header from '../components/Home/Header'
+import Posts from '../components/Home/Posts'
 import { fetch_posts } from '../lib/fetchPosts'
 import { Post } from '../typings'
 
@@ -21,7 +21,7 @@ const Home = ({ posts }: HomeProps) => {
     return false
   })
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto  max-w-7xl">
       <Head>
         <title>Medium Clone</title>
         <link rel="icon" href="/favicon.ico" />

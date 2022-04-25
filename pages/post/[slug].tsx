@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next'
 import React, { useState } from 'react'
 import PortableText from 'react-portable-text'
-import Comments from '../../components/Comments'
-import Header from '../../components/Header'
-import RenderComments from '../../components/RenderComments'
+import Comments from '../../components/Home/Comments'
+import Header from '../../components/Home/Header'
+import RenderComments from '../../components/Home/RenderComments'
 import { fetch_posts } from '../../lib/fetchPosts'
 import { bodyImageBuilder, client } from '../../lib/sanity.clinet'
 import { Post } from '../../typings'
@@ -26,7 +26,7 @@ const Post = ({ post }: Props) => {
   } = post
 
   const newBody = bodyImageBuilder(body)
-  const [submit, setSubmit] = React.useState(!false)
+  const [submit, setSubmit] = React.useState(false)
   return (
     <div>
       <Header />
