@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import PortableText from 'react-portable-text'
 import Comments from '../../components/Comments'
 import Header from '../../components/Header'
+import RenderComments from '../../components/RenderComments'
 import { fetch_posts } from '../../lib/fetchPosts'
 import { bodyImageBuilder, client } from '../../lib/sanity.clinet'
 import { Post } from '../../typings'
@@ -23,9 +24,9 @@ const Post = ({ post }: Props) => {
     _id,
     comments,
   } = post
-  console.log(comments)
+
   const newBody = bodyImageBuilder(body)
-  const [submit, setSubmit] = React.useState(false)
+  const [submit, setSubmit] = React.useState(!false)
   return (
     <div>
       <Header />
@@ -73,13 +74,19 @@ const Post = ({ post }: Props) => {
         </div>
       </article>
       {/* Break */}
-      <hr className="mx-auto max-w-xl border border-yellow-300" />
+      <hr className="mx-auto max-w-lg border border-yellow-300" />
       {submit ? (
-        <h1>done</h1>
+        <div className="mx-auto my-10 flex max-w-2xl flex-col items-center bg-sky-500 p-10 text-white">
+          <span className="text-3xl font-bold">Thanks For Your submission</span>
+          <span className="text-gray-100">
+            Once it has been Approved, it will appear below!
+          </span>
+        </div>
       ) : (
         <Comments id={_id} submit={submit} setSubmit={setSubmit} />
       )}
-      {/* Comments */}
+      {/* Render Comments */}
+      <RenderComments comments={comments} />
     </div>
   )
 }
@@ -113,6 +120,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           _type == "comment" &&
           post._ref == ^._id &&
           Approved == true],
+
 description,
 "mainImage":mainImage.asset->url,
 body
