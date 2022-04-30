@@ -16,16 +16,18 @@ const progress = new ProgressBar({
   delay: 100,
 })
 Router.events.on('routeChangeStart', progress.start)
-
+import { MediumProvider } from '../context/MediumContext'
 Router.events.on('routeChangeComplete', progress.finish)
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MoralisProvider
-      appId={process.env.NEXT_PUBLIC_APP_ID}
-      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-    >
-      <Component {...pageProps} />
-    </MoralisProvider>
+    <MediumProvider>
+      <MoralisProvider
+        appId={process.env.NEXT_PUBLIC_APP_ID}
+        serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+      >
+        <Component {...pageProps} />
+      </MoralisProvider>
+    </MediumProvider>
   )
 }
 

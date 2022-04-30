@@ -24,3 +24,13 @@ export const bodyImageBuilder = (body: [object]) => {
   })
   return newBody
 }
+
+export const fetchUsers = async () => {
+  const query = `*[_type == "author"]{
+         name,
+        "image": image.asset->url
+  }`
+
+  const result = await client.fetch(query)
+  return result
+}

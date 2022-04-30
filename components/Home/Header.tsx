@@ -61,7 +61,7 @@ const Header: NextPage = (): JSX.Element => {
 
         <span
           onClick={() => {
-            if (account?.length > 0) {
+            if (user || account) {
               router.push('/getstarted')
             } else {
               toast.current.show({

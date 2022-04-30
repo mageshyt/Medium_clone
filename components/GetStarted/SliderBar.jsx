@@ -7,12 +7,16 @@ import { BsBookmarks } from 'react-icons/bs'
 import { GrNotes } from 'react-icons/gr'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { MediumContext } from '../../context/MediumContext'
+import { Icons } from '../../assets/IconData'
 const style = {
   wrapper: 'px-8 flex flex-col py-4 justify-between items-center',
   icon: 'text-2xl cursor-pointer text-gray-600',
 }
 const SliderBar = () => {
   const router = useRouter()
+  const { Icon, setIcon } = React.useContext(MediumContext)
+
   return (
     <div className={style.wrapper}>
       {/* Top session*/}
@@ -28,10 +32,21 @@ const SliderBar = () => {
 
       {/* Middle */}
       <div className="mx-auto flex flex-col   space-y-8 px-2">
-        <AiOutlineHome className={style.icon} />
+        {/* <AiOutlineHome className={style.icon} />
         <AiOutlineBell className={style.icon} />
         <BsBookmarks className={style.icon} />
-        <GrNotes className={style.icon} />
+        <GrNotes className={style.icon} /> */}
+        {Icons.map((icon, index) => {
+          return (
+            <div key={index} onClick={() => setIcon(icon.name)}>
+              {Icon === icon.name ? (
+                <RenderIcon Icon={icon.Active} />
+              ) : (
+                <RenderIcon Icon={icon.Icon} />
+              )}
+            </div>
+          )
+        })}
 
         {/* divider */}
         <hr className=" w-full border border-black" />
@@ -48,6 +63,10 @@ const SliderBar = () => {
       </div>
     </div>
   )
+}
+
+const RenderIcon = ({ Icon }) => {
+  return <Icon className={style.icon} />
 }
 
 export default SliderBar
