@@ -5,10 +5,11 @@ import Comments from '../../components/Home/Comments'
 import Header from '../../components/Home/Header'
 import RenderComments from '../../components/Home/RenderComments'
 import { fetch_posts } from '../../lib/fetchPosts'
-import { bodyImageBuilder, client } from '../../lib/sanity.clinet'
+import { client } from '../../lib/sanity.clinet'
 import { Post } from '../../typings'
 // import {useFien/}
 import { Image } from 'primereact/image'
+import { bodyImageBuilder } from '../../lib/Sanity.lib'
 
 interface Props {
   post: Post

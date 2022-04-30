@@ -1,21 +1,33 @@
 import { createContext, useEffect, useState } from 'react'
-import { client, fetchUsers } from '../lib/sanity.clinet'
+import { fetch_posts } from '../lib/fetchPosts'
+import { client } from '../lib/sanity.clinet'
+import { fetchUsers } from '../lib/Sanity.lib'
 
 export const MediumContext = createContext()
 
 export const MediumProvider = ({ children }) => {
+  // ! to track the icons
   const [Icon, setIcon] = useState('home')
-  const [user, setUsers] = useState([])
+  //! to tracker the authors
+  const [Authors, setAuthors] = useState([])
+
+  const [post, setPost] = useState([])
   useEffect(async () => {
     const res = await fetchUsers()
-    setUsers(res)
+    const map = new Map()
+    const post_res = await fetch_posts()
+
+    setAuthors(res)
+    setPost(post_res)
   }, [])
+
   return (
     <MediumContext.Provider
       value={{
         Icon,
         setIcon,
-        user,
+        Authors,
+        post,
       }}
     >
       {children}
