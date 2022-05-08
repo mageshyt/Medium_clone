@@ -12,13 +12,15 @@ export const MediumProvider = ({ children }) => {
   const [Authors, setAuthors] = useState([])
 
   const [post, setPost] = useState([])
-  useEffect(async () => {
-    const res = await fetchUsers()
-    const map = new Map()
-    const post_res = await fetch_posts()
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await fetchUsers()
+      const post_res = await fetch_posts()
 
-    setAuthors(res)
-    setPost(post_res)
+      setAuthors(res)
+      setPost(post_res)
+    }
+    fetch()
   }, [])
 
   return (

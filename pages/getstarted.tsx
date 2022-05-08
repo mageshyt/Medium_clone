@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Feed from '../components/GetStarted/Feed'
 import SlideBar from '../components/GetStarted/SliderBar'
 import Widgets from '../components/GetStarted/Widgets'
+import WritePost from '../components/GetStarted/WritePost'
 import { fetch_posts } from '../lib/fetchPosts'
 import { Post } from '../typings'
 const style = {
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const GetStarted = () => {
+  const [writePost, setWritePost] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch_posts()
@@ -25,9 +27,9 @@ const GetStarted = () => {
     <div className={style.wrapper}>
       <div className={style.content}>
         {/* Slider Bar */}
-        <SlideBar />
-        {/* Feed */}
-        <Feed />
+        <SlideBar setWritePost={setWritePost} />
+        {writePost ? <WritePost /> : <Feed />}
+        {/* <Feed /> */}
         {/* Widgets */}
         <Widgets />
       </div>

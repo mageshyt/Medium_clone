@@ -8,11 +8,13 @@ const style = {
 }
 
 const FeedPosts = ({ post }: any) => {
-  const { author, _createdAt } = post
+  const { author, _createdAt, categories } = post
+  console.log(post)
+  console.log('Category 👉 :', categories)
   return (
     <div className={style.wrapper}>
       {/* top auth pic name ,posted date */}
-      <div className="m-2 flex items-center space-x-4    ">
+      <div className="m-2 flex items-center space-x-4">
         <img src={author?.imageUrl} alt="author pic" className={style.Avatar} />
         <span>{author?.name}</span>
         {/* created at */}
@@ -21,7 +23,7 @@ const FeedPosts = ({ post }: any) => {
         </span>
       </div>
       {/*  */}
-      <div className="flex flex-col justify-between   lg:flex-row">
+      <div className="flex flex-col justify-between lg:flex-row">
         <div className="w-[80%]">
           <p className={style.title}>{post?.title}</p>
           <p>
@@ -30,8 +32,17 @@ const FeedPosts = ({ post }: any) => {
             general purpose editor, in addition to being free and open-source,
             is how much it
           </p>
+          {/* categories */}
+          <div className="mt-4">
+            {categories &&
+              categories.map((category: { title: string }) => (
+                <span className="mx-2 rounded-2xl bg-[#121212] p-1 text-sm text-white">
+                  {category.title}
+                </span>
+              ))}
+          </div>
         </div>
-
+        {/* Post Thumbnail*/}
         <div>
           <img
             src={post?.mainImage}

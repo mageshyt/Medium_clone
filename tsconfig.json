@@ -16,6 +16,6 @@
     "incremental": true,
     "strictNullChecks": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "context/MediumContext.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "context/MediumContext.js", "components/GetStarted/WritePost.jsx"],
   "exclude": ["node_modules"]
 }

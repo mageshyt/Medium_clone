@@ -12,6 +12,7 @@ const style = {
 
 const Feed = () => {
   const { Authors, post } = useContext(MediumContext)
+  console.log(post)
   const [active, setActive] = React.useState('recommendation')
   //! remove the duplicate from users
   return (
@@ -25,7 +26,11 @@ const Feed = () => {
       {/* users posts */}
       <div className="p-8">
         {post.map((post: Post, index: number) => {
-          return <FeedPosts post={post} />
+          return (
+            <div key={index}>
+              <FeedPosts post={post} />
+            </div>
+          )
         })}
       </div>
     </div>
