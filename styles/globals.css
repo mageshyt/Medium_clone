@@ -7,6 +7,12 @@
   background: transparent;
 }
 
+<<<<<<< HEAD
 .btn--primary {
   @apply bg-sky-500 text-white;
 }
+=======
+.center {
+  @apply flex items-center justify-center;
+}
+>>>>>>> 93ff3c1594b5ad466cf70ec1c7872700f618eae8

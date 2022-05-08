@@ -10,7 +10,7 @@ const style = {
   wrapper: 'px-8 flex flex-row md:flex-col py-4 justify-between items-center',
   icon: 'text-2xl cursor-pointer text-gray-600',
 }
-const SliderBar = () => {
+const SliderBar = ({ setWritePost }) => {
   const router = useRouter()
   const { Icon, setIcon } = React.useContext(MediumContext)
 
@@ -33,9 +33,9 @@ const SliderBar = () => {
           return (
             <div key={index} onClick={() => setIcon(icon.name)}>
               {Icon === icon.name ? (
-                <RenderIcon Icon={icon.Active} />
+                <RenderIcon setWritePost={setWritePost} Icon={icon.Active} />
               ) : (
-                <RenderIcon Icon={icon.Icon} />
+                <RenderIcon setWritePost={setWritePost} Icon={icon.Icon} />
               )}
             </div>
           )
@@ -58,8 +58,8 @@ const SliderBar = () => {
   )
 }
 
-const RenderIcon = ({ Icon }) => {
-  return <Icon className={style.icon} />
+const RenderIcon = ({ Icon, setWritePost }) => {
+  return <Icon onClick={() => setWritePost(false)} className={style.icon} />
 }
 
 export default SliderBar

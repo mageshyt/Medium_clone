@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Feed from '../components/GetStarted/Feed'
 import SlideBar from '../components/GetStarted/SliderBar'
 import Widgets from '../components/GetStarted/Widgets'
+import WritePost from '../components/GetStarted/WritePost'
 import { fetch_posts } from '../lib/fetchPosts'
 const style = {
   wrapper: `flex justify-center  h-screen w-screen select-none `,
@@ -9,6 +10,7 @@ const style = {
 }
 
 const GetStarted = () => {
+  const [writePost, setWritePost] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch_posts()
@@ -20,7 +22,7 @@ const GetStarted = () => {
       <div className={style.content}>
         <div className="flex w-full flex-col-reverse md:flex-row">
           {/* Slider Bar */}
-          <SlideBar />
+          <SlideBar setWritePost={setWritePost} />
           {/* Feed */}
           <Feed />
         </div>

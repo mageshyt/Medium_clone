@@ -12,6 +12,7 @@ const style = {
 
 const Feed = () => {
   const { Authors, post } = useContext(MediumContext)
+  console.log(post)
   const [active, setActive] = React.useState('recommendation')
   //! remove the duplicate from users
   return (
