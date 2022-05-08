@@ -1,16 +1,13 @@
 import React from 'react'
 
-import { AiOutlineHome, AiOutlineBell } from 'react-icons/ai'
 import { BsPencilSquare } from 'react-icons/bs'
 import Logo from '../../assets/images/medium.webp'
-import { BsBookmarks } from 'react-icons/bs'
-import { GrNotes } from 'react-icons/gr'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { MediumContext } from '../../context/MediumContext'
 import { Icons } from '../../assets/IconData'
 const style = {
-  wrapper: 'px-8 flex flex-col py-4 justify-between items-center',
+  wrapper: 'px-8 flex flex-row md:flex-col py-4 justify-between items-center',
   icon: 'text-2xl cursor-pointer text-gray-600',
 }
 const SliderBar = () => {
@@ -20,7 +17,7 @@ const SliderBar = () => {
   return (
     <div className={style.wrapper}>
       {/* Top session*/}
-      <div className="mt-10 cursor-pointer">
+      <div className="mt-10 hidden cursor-pointer md:block">
         <Image
           onClick={() => router.push('/')}
           src={Logo}
@@ -31,11 +28,7 @@ const SliderBar = () => {
       </div>
 
       {/* Middle */}
-      <div className="mx-auto flex flex-col   space-y-8 px-2">
-        {/* <AiOutlineHome className={style.icon} />
-        <AiOutlineBell className={style.icon} />
-        <BsBookmarks className={style.icon} />
-        <GrNotes className={style.icon} /> */}
+      <div className="mx-auto flex w-full flex-row justify-evenly space-y-0 px-2   md:flex-col md:space-y-8">
         {Icons.map((icon, index) => {
           return (
             <div key={index} onClick={() => setIcon(icon.name)}>
@@ -49,8 +42,8 @@ const SliderBar = () => {
         })}
 
         {/* divider */}
-        <hr className=" w-full border border-black" />
-        <BsPencilSquare className={style.icon} />
+        <hr className=" hidden w-full border border-black md:block" />
+        <BsPencilSquare className={`${style.icon} hidden md:block`} />
       </div>
 
       {/* End */}

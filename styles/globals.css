@@ -6,3 +6,7 @@
   width: 0px;
   background: transparent;
 }
+
+.btn--primary {
+  @apply bg-sky-500 text-white;
+}

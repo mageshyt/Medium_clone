@@ -25,7 +25,7 @@ const Feed = () => {
       {/* users posts */}
       <div className="p-8">
         {post.map((post: Post, index: number) => {
-          return <FeedPosts post={post} />
+          return <FeedPosts index={index} post={post} />
         })}
       </div>
     </div>
